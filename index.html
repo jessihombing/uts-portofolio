@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS Portofolio - [Nama Kamu]</title>
+    <style>
+        /* --- STYLING RETRO WINDOWS 95 --- */
+        body {
+            background-color: #008080; 
+            font-family: 'Tahoma', 'Verdana', sans-serif;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Ikon di Desktop */
+        .desktop-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 110px;
+        }
+        .icon {
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border: 1px dotted transparent;
+        }
+        .icon:hover {
+            border: 1px dotted white;
+            background-color: rgba(255,255,255,0.1);
+        }
+        .icon-emoji {
+            font-size: 40px; 
+            display: block; 
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #000; 
+        }
+        .icon span.text {
+            display: block;
+            font-size: 12px;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        /* Jendela (Window) */
+        .window {
+            position: absolute;
+            top: 50px;
+            left: 150px;
+            width: 550px;
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff; 
+            box-shadow: 2px 2px 0 #000;
+            display: none; 
+            z-index: 10;
+        }
+        .window.active {
+            display: block;
+        }
+
+        /* Title Bar Jendela */
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .close-btn {
+            background-color: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 4px;
+            font-size: 12px;
+        }
+        .close-btn:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+
+        /* Konten Jendela */
+        .window-content {
+            padding: 15px;
+            color: black;
+            font-size: 14px;
+            max-height: 70vh;
+            overflow-y: auto;
+            background-color: #c0c0c0;
+            line-height: 1.5;
+        }
+        .window-content img {
+            max-width: 100%;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080; 
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+            margin: 15px 0;
+        }
+
+        /* Tombol ala Windows 95 */
+        .btn {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #000000 #000000 #ffffff;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn:active {
+            border-color: #000000 #ffffff #ffffff #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- IKON DESKTOP -->
+    <div class="desktop-icons">
+        <div class="icon" onclick="openWindow('win-identitas')">
+            <span class="icon-emoji">👤</span>
+            <span class="text">Identitas.exe</span>
+        </div>
+        <div class="icon" onclick="openWindow('win-porto')">
+            <span class="icon-emoji">💼</span>
+            <span class="text">Porto_Saya</span>
+        </div>
+        <div class="icon" onclick="openWindow('win-target')">
+            <span class="icon-emoji">📝</span>
+            <span class="text">Target_User.txt</span>
+        </div>
+        <div class="icon" onclick="openWindow('win-baca')">
+            <span class="icon-emoji">ℹ️</span>
+            <span class="text">Baca_Saya.txt</span>
+        </div>
+    </div>
+
+    <!-- JENDELA 1: IDENTITAS (Wajib: Nama, NPM, Kelas, Foto) -->
+    <div id="win-identitas" class="window">
+        <div class="title-bar">
+            <span>Identitas.exe</span>
+            <button class="close-btn" onclick="closeWindow('win-identitas')">X</button>
+        </div>
+        <div class="window-content">
+            <h2>Data Diri</h2>
+            <hr>
+            <!-- WAJIB: GANTI "assets/foto-saya.jpg" DENGAN FOTO KAMU -->
+            <img src="foto-saya.jpg" alt="Foto Saya" style="width: 150px; float: left; margin-right: 15px;">
+            
+            <!-- WAJIB: ISI IDENTITAS KAMU -->
+            <p><strong>Nama Lengkap:</strong> Jesfitrina Sihombing</p>
+            <p><strong>NPM:</strong> 24781013</p>
+            <p><strong>Kelas:</strong> MI 5A </p>
+            <p><em>"Halo! Selamat datang di portofolio interaktif saya."</em></p>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <!-- JENDELA 2: PORTO SAYA (Wajib: Profil, Skill, Min 1 Gambar Karya + Penjelasan) -->
+    <div id="win-porto" class="window" style="top: 70px; left: 180px;">
+        <div class="title-bar">
+            <span>Porto_Saya - File Explorer</span>
+            <button class="close-btn" onclick="closeWindow('win-porto')">X</button>
+        </div>
+        <div class="window-content">
+            <h3>Profil & Portofolio</h3>
+            <hr>
+            <p><strong>Profil Singkat:</strong><br>
+            Saya adalah mahasiswa yang antusias di bidang web development dan desain antarmuka selain itu saya punya hobi melukis meskipun lukisanku ku biasa aja</p>
+            
+            <p><strong>Skill & Interest:</strong><br>
+            HTML, CSS, JavaScript, Desain Grafis, dll.</p>
+            
+            <hr>
+            <h3>Karya Saya (Minimal 1)</h3>
+            <!-- WAJIB: GANTI GAMBAR DI FOLDER ASSETS -->
+            <img src="gambar-karya.jpg" alt="Karya Saya">
+            <p><strong>Penjelasan Karya:</strong><br>
+        Ini adalah hasil lukisan ku hehehehhe </p>
+        </div>
+    </div>
+
+    <!-- JENDELA 3: TARGET USER (Wajib: Who, Why, Proof) -->
+    <div id="win-target" class="window" style="top: 90px; left: 210px;">
+        <div class="title-bar">
+            <span>Target_User.txt - Notepad</span>
+            <button class="close-btn" onclick="closeWindow('win-target')">X</button>
+        </div>
+        <div class="window-content">
+            <h3>Analisis Target User</h3>
+            <hr>
+            <!-- WAJIB: ISI 3 LAPISAN (WHO, WHY, PROOF) -->
+            <p><strong>1. Siapa Target User (Who):</strong><br> 
+            [Recruiter IT / HRD di startup teknologi.]</p>
+            
+            <p><strong>2. Kenapa Memilih Mereka (Why):</strong><br> 
+            [Karena saya ingin melamar sebagai Front-End Developer, dan mereka adalah pihak yang akan menyeleksi portofolio teknis saya.]</p>
+            
+            <p><strong>3. Bukti / Relevansi (Proof):</strong><br> 
+        ini adalah bukti lukisanku terdapat bakat yang kupendam yang orang gak tauu aku bangga pada diriku bisa melukis meskipun lukisan seadanya  web. Link lowongan: <a href="#">(Taruh link di sini)</a>]</p>
+        </div>
+    </div>
+
+    <!-- JENDELA 4: PANDUAN UNTUK DOSEN/ASISTEN -->
+    <div id="win-baca" class="window" style="top: 110px; left: 240px;">
+        <div class="title-bar">
+            <span>Baca_Saya.txt - Notepad</span>
+            <button class="close-btn" onclick="closeWindow('win-baca')">X</button>
+        </div>
+        <div class="window-content">
+            <h3>Petunjuk untuk Penilai:</h3>
+            <hr>
+            <ol>
+                <li>Buka <strong>Identitas.exe</strong> untuk melihat Nama, NPM, Kelas, dan Foto.</li>
+                <li>Buka <strong>Porto_Saya</strong> untuk melihat profil, *skill*, dan karya.</li>
+                <li>Buka <strong>Target_User.txt</strong> untuk melihat analisis *Who, Why, Proof*.</li>
+            </ol>
+            <p><em>Website ini menggunakan interaksi JavaScript murni untuk membuka/menutup jendela (memenuhi syarat penggunaan JS).</em></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT UNTUK INTERAKSI (Buka Tutup Jendela) -->
+    <script>
+        function openWindow(windowId) {
+            // Sembunyikan semua jendela dulu
+            let windows = document.querySelectorAll('.window');
+            windows.forEach(win => win.classList.remove('active'));
+            
+            // Buka jendela yang di-klik
+            document.getElementById(windowId).classList.add('active');
+        }
+
+        function closeWindow(windowId) {
+            document.getElementById(windowId).classList.remove('active');
+        }
+    </script>
+</body>
+</html>
